@@ -11,8 +11,8 @@ for (let i = 0; i < numberOfDrums; i++) {
 
 //Detecting key press
 document.addEventListener("keydown", function (event) {
-  makeSound(event.key);
-  playAnimation(event.key);
+  makeSound(event.key.toLowerCase());
+  playAnimation(event.key.toLowerCase());
 });
 
 //Playing sound according to clicked button or pressed key
@@ -54,8 +54,10 @@ function makeSound(key) {
 
 function playAnimation(currentKey) {
   var activeButton = document.querySelector("." + currentKey);
-  activeButton.classList.add("pressed");
-  setTimeout(function () {
-    activeButton.classList.remove("pressed");
-  }, 100)
+  if (activeButton !== null) {
+    activeButton.classList.add("pressed");
+    setTimeout(function () {
+      activeButton.classList.remove("pressed");
+    }, 100)
+  } else console.log(currentKey);
 }
